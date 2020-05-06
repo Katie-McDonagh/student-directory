@@ -1,4 +1,4 @@
-# exercise3: print students whose name is <= 12 charatcers long
+# Q5: add more info on students (hobbies, country of birth, height)
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -9,7 +9,14 @@ def input_students
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
-    students << {name: name, cohort: :november}
+  puts "Enter the hobbies of #{name}"
+  hobbies = gets.chomp
+  puts "Enter the country of birth of #{name}"
+  c_o_b = gets.chomp
+  puts "Enter the height of #{name} (in feet and inches)"
+  height = gets.chomp
+    students << {name: name, cohort: :november, hobbies: hobbies,
+      c_o_b: c_o_b, height: height}
     puts "Now we have #{students.count} students"
     # get another name from the user
     name = gets.chomp
@@ -23,9 +30,7 @@ def print_header
 end
 def print(students)
   students.each do |student|
-    if student[:name].length < 13 then
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
-    end
+    puts "#{student[:name]} who likes #{student[:hobbies]}, is from #{student[:c_o_b]}, #{student[:height]} feet tall and in the #{student[:cohort]} cohort"
   end
 end
 def print_footer(names)
