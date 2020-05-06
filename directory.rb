@@ -37,8 +37,9 @@ print(students)
 print_footer(students)
 
 def interactive_menu
+  loop do
   # 1. print the menu and ask the user what to do
   # 2. read the input amd save it into a variable
   # 3. do what the user has asked
-  # 4. repeat from step 1
+  end
 end
