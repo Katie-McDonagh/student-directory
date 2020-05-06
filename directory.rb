@@ -16,10 +16,12 @@ def input_students
   # return the array of input_students
   students
 end
+
 def print_header
   puts "The students of Villains Academy"
   puts "-------------"
 end
+
 def print(students)
   students.each do |student|
     puts "#{student[:name]} (#{student[:cohort]} cohort)"
