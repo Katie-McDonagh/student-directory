@@ -1,4 +1,13 @@
-# exercise1: modify the program to print a number before the name of each student
+# exercise2: print students whose name begins with a specific letter
+# I will be usung L as my specific letter.
+def print(students)
+  students.each do |student|
+    if student[:name].start_with?("L") then
+    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    end
+  end
+end
+
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -17,15 +26,20 @@ def input_students
   # return the array of input_students
   students
 end
+
 def print_header
   puts "The students of Villains Academy"
   puts "-------------"
 end
+
 def print(students)
-  students.each_with_index do |student, index|
-    puts "#{index + 1}{}#{student[:name]} (#{student[:cohort]} cohort)"
+  students.each do |student|
+    if student[:name].start_with?("L") then
+    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    end
   end
 end
+
 def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end
