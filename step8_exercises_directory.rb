@@ -59,7 +59,7 @@ def input_students
   # create an empty array
   students = []
   # get the first name
-  name = gets.chomp
+  name = gets.gsub!("\n", "")
   cohort = add_cohort
   # while the name is not empty, repeat this code
   while !name.empty? do
@@ -71,7 +71,7 @@ def input_students
       puts "Now we have #{students.count} students"
     end
     # get another name from the user
-    name = gets.chomp
+    name = gets.gsub!("\n", "")
     cohort = add_cohort
   end
   # return the array of input_students
