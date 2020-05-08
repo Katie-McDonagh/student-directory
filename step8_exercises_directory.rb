@@ -86,16 +86,22 @@ end
 def print(students)
   i = 0
   while i < students.count
-  #  puts "#{students[i][:name]} (#{students[i][:cohort]} cohort)".center(30)
+  # puts "#{students[i][:name]} (#{students[i][:cohort]} cohort)".center(30)
     i += 1
   end
-  puts students.group_by {|student| student[:cohort]}
-   .each {|cohort, students| students.map!{|single_student| single_student = (single_student[:name])}}.flatten
-end
+  if students.count > 0
+     puts students.group_by {|student| student[:cohort]}
+     .each {|cohort, students| students.map!{|single_student| single_student = (single_student[:name])}}
+     .flatten
+   end
+ end
+
 
 def print_footer(names)
   if names.count == 1
     puts "Overall, we have #{names.count} great student".center(35)
+  elsif names.count == 0
+    puts "No students at this time".center(35)
   else
     puts "Overall, we have #{names.count} great students".center(35)
   end
