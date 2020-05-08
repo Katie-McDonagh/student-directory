@@ -1,3 +1,8 @@
+require 'csv'
+
+@loaded_filename = ""
+@default_filename = "students.cvs"
+
 @students = [] # an empty array accessible to all methods
 
 def print_menu
@@ -78,23 +83,31 @@ end
 
 def save_students
   # open the file for writing
-  file = File.open("students.csv", "w") do |file|
+  CSV.open("students.csv", "wb") do |csv|
   # iterate over the array of students
   @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+    csv << [student[:name], student[:cohort]]
   end
+  @loaded_filename = filename
 end
 end
 
-def load_students(filename = "students.csv")
-  file = File.open(filename, "r") do |file|
-  file.readlines.each do |line|
-  name, cohort = line.chomp.split(',')
-    student_array(name, cohort)
+def load_students(filename = @default_filename)
+  if File.exists?(filename)
+    CVS.foreach(filename) do |row|
+   name, cohort = row
+  student_array(name, cohort)
   end
-end
+  @loaded_filename = filename
+else
+     if filename == @default_filename
+       File.write("students.csv", "")
+       @loaded_filename = filename
+       puts "A new #{@default_filename} was created"
+     else
+       puts "Using #{@loaded_filename}"
+     end
+   end
 end
 
 def try_load_students
@@ -102,7 +115,9 @@ def try_load_students
   if filename.nil?
     puts "Loaded the default file: students.csv"
     load_students
-  elsif File.exists?(filename)
+    return
+  end
+  if File.exists?(filename)
     load_students(filename)
      puts "Loaded #{@students.count} from #{filename}"
   else # if it doesn't exist
