@@ -128,3 +128,11 @@ end
 
 try_load_students
 interactive_menu
+
+class SourceCode
+  def test 
+    puts "reads and prints it's own sourcecode"
+  end
+end
+
+puts File.read(__FILE__)
