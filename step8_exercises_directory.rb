@@ -94,7 +94,11 @@ def print(students)
 end
 
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students".center(35)
+  if names.count == 1
+    puts "Overall, we have #{names.count} great student".center(35)
+  else
+    puts "Overall, we have #{names.count} great students".center(35)
+  end
 end
 #nothing happens until we call the methods
 students = input_students
